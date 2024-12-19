@@ -763,7 +763,7 @@ You’ll be presented with different scenarios and will be asked to respond with
 
 After each response, you’ll receive a score between -2 and 2, along with some feedback.
 
-Here's the Braver Angels way:
+Here's the Braver Angels Way:
 ${braverAnglesWay}
 
 To learn more, visit https://braverangels.org/
@@ -814,11 +814,11 @@ The Sun is composed of roughly 98% hydrogen and helium,[41] as are Jupiter and S
 `;
   } else if (gameMode === "braver-angels") {
     systemMessage += `
-You are going to ask the user questions to quiz them based on their knowledge of the Braver Angels way.
+You are going to ask the user questions to quiz them based on their knowledge of the Braver Angels Way.
 
-Each question will be short and will describe a scenario and ask the user what would be the Braver Angels way of responding. It should be an open-ended question, not just reciting a fact, but something they will need to respond with no more than a sentence.
+Each question will be short and will describe a scenario and ask the user what would be the Braver Angels Way of responding. It should be an open-ended question, not just reciting a fact, but something they will need to respond with no more than a sentence.
 
-Then you will judge the answer based on the below information about the Braver Angels way.
+Then you will judge the answer based on the below information about the Braver Angels Way.
 
 If the answer is irrelevant to the question, then you will respond politely that it is irrelevant and prompt them to try again.
 
