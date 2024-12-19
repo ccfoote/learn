@@ -1,6 +1,6 @@
 import { SmallIconButton } from "@fi-sci/misc";
 import { Send } from "@mui/icons-material";
-import { FunctionComponent, useCallback } from "react";
+import { FunctionComponent, useCallback, useEffect, useMemo } from "react";
 
 type InputBarProps = {
   width: number;
@@ -21,6 +21,18 @@ const InputBar: FunctionComponent<InputBarProps> = ({
   editedPromptText,
   setEditedPromptText,
 }) => {
+  // Detect if the device is running iOS
+  const isIOS = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return /iPad|iPhone|iPod/.test(navigator.userAgent);
+  }, []);
+
+  useEffect(() => {
+    if (isIOS) {
+      alert("DEBUG: iOS detected");
+    }
+  }, [isIOS]);
+
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter" || e.key === "NumpadEnter" || e.key === "Return") {
@@ -42,8 +54,19 @@ const InputBar: FunctionComponent<InputBarProps> = ({
         onChange={(e) => setEditedPromptText(e.target.value)}
         style={{ width: width - 8 - 20, height: height - 7 }}
         onKeyDown={handleKeyDown}
+        onBlur={(e) => {
+          // Only handle blur on iOS devices for the "done" button
+          if (isIOS && editedPromptText.trim() && !e.relatedTarget) {
+            if (editedPromptText.length > 1000) {
+              alert("Message is too long");
+              return;
+            }
+            onMessage(editedPromptText);
+            setEditedPromptText("");
+          }
+        }}
         placeholder={
-          waitingForResponse ? "Waiting for response..." : "Type your reponse..."
+          waitingForResponse ? "Waiting for response..." : "Type your response..."
         }
         disabled={disabled}
       />
@@ -52,7 +75,7 @@ const InputBar: FunctionComponent<InputBarProps> = ({
           icon={<Send />}
           title="Submit"
           onClick={() => {
-            if (editedPromptText.length > 1000) {
+            if (editedPromptText.length > 5000) {
               alert("Message is too long");
               return;
             }
