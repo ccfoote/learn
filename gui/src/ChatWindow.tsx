@@ -33,6 +33,8 @@ if (queryParameters.get("mode") === "braver-angels") {
   gameMode = "braver-angels";
 }
 
+const queryModel = queryParameters.get("model") || "openai/gpt-4o";
+
 type ChatWindowProps = {
   width: number;
   height: number;
@@ -113,7 +115,7 @@ const EditContributorsChatWindowChild: FunctionComponent<{
   const settingsBarHeight = 20;
   const topBarHeight = 24;
 
-  const [modelName, setModelName] = useState("openai/gpt-4o");
+  const [modelName, setModelName] = useState(queryModel);
 
   const handleUserMessage = useCallback(
     (message: string) => {
