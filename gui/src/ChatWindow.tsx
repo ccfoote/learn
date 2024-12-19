@@ -755,11 +755,13 @@ very easy, easy, medium, difficult, or very difficult.
 `;
   } else if (gameMode === "braver-angels") {
     return `
-Welcome! This app is designed to help you become more familiar with the Braver Angels way through interactive learning.
+## Welcome!
 
-You’ll be presented with different scenarios related to the Braver Angels way, and you will be asked to respond with how you would handle the situation in a Braver Angels way.
+This app will help you become more familiar with the Braver Angels Way through interactive learning.
 
-After each response, you’ll receive a score between -2 and 2, along with personalized feedback to help you grow as a Braver Angels expert.
+You’ll be presented with different scenarios and will be asked to respond with how you would handle the situation in a Braver Angels Way.
+
+After each response, you’ll receive a score between -2 and 2, along with some feedback.
 
 Here's the Braver Angels way:
 ${braverAnglesWay}
